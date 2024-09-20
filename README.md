@@ -62,6 +62,12 @@ To host the Streamlit app, you can use Streamlit Cloud or deploy it on platforms
 
 Note: Make sure to set up environment variables for any sensitive information like API keys when deploying to a hosting platform.
 
+## For example:
+
+Input: https://drive.google.com/file/d/1gpgk1bFMxlFvjNb9sd6uIEUF89A9LM1h/view?usp=sharing
+
+Output: https://drive.google.com/file/d/1suAM4bmzMP3qoDdOFxdhTR91rvALV4L2/view?usp=sharing
+
 ## License
 
 This project is licensed under the MIT License.
