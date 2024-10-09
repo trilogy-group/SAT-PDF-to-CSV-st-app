@@ -44,13 +44,14 @@ def extract_text_from_pdf(pdf_file, start_page, end_page):
 def process_pdf_chunk(chunk_text, api_key):
     prompt = f"""
     Analyze the following text extracted from an SAT question paper and format it into a structured JSON output. Extract the following details for each question:
-
+    - Question ID (for example - 6ed4df)
     - Question text including the complete passage, table (in markdown), etc.
     - Options (A, B, C, D, and sometimes E)
     - Correct answer (the letter of the correct option)
-    - Rationale (a rationale of why the correct answer is right which is provided)
-    - Skill (if available, otherwise use "Not specified")
+    - Rationale (a rationale of why the correct answer is right and other options are incorrect which is provided)
+    - Test (if available, otherwise use "Not specified")
     - Domain (if available, otherwise use "Not specified")
+    - Skill (if available, otherwise use "Not specified")
     - Difficulty (if available, otherwise use "Not specified")
 
     Format the extracted information into a JSON structure as follows:
@@ -58,18 +59,20 @@ def process_pdf_chunk(chunk_text, api_key):
     {{
       "questions": [
         {{
-          "question_text": "What is the capital of France?",
+          "question_id": "6ed4qc",
+          "question_text": "The human brain is primed to recognize faces—so much so that, due to a perceptual tendency called pareidolia, ______ will even find faces in clouds, wooden doors, pieces of fruit, and other faceless inanimate objects. Researcher Susan Magsamen has focused her work on better understanding this everyday phenomenon.Which choice completes the text so that it conforms to the conventions of Standard English?",
           "options": [
-            {{"label": "A", "text": "London"}},
-            {{"label": "B", "text": "Paris"}},
-            {{"label": "C", "text": "Berlin"}},
-            {{"label": "D", "text": "Madrid"}}
+            {{"label": "A", "text": "she"}},
+            {{"label": "B", "text": "they"}},
+            {{"label": "C", "text": "it"}},
+            {{"label": "D", "text": "those"}}
           ],
-          "correct_answer": "B",
-          "rationale": "Paris is the capital and largest city of France.",
-          "skill": "Geography",
-          "domain": "Social Studies",
-          "difficulty": "Easy"
+          "correct_answer": "C",
+          "rationale": "Choice C is the best answer. "It" is a singular pronoun used to stand in for objects. Since the antecedent in this case is the singular noun phrase "the human brain," "it" is a perfect pronoun to use here. Choice A is incorrect. Although "she" is a singular pronoun, it is reserved for people and animals, not objects like "the human brain." Choice B is incorrect. "They" is a plural pronoun, but we need a singular pronoun to represent the antecedent "the human brain." Choice D is incorrect. "Those" is a plural pronoun, but we need a singular pronoun to represent the antecedent "the human brain."",
+          "test": "Reading and Writing",
+          "domain": "Standard English Conventions",
+          "skill": "Form, Structure and Tense",
+          "difficulty": "Medium"
         }}
       ]
     }}
